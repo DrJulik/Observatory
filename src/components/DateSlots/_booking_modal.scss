@@ -53,9 +53,19 @@
 	}
 }
 
+.booking-form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: 1rem;
+}
+
 .booking-input-name,
 .booking-input-phone,
 .booking-input-time {
+	display: flex;
+	flex-direction: column;
 	margin: 1rem;
 
 	input {
