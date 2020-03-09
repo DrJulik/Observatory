@@ -11,6 +11,36 @@ const reducer = (state, action) => {
 					action.payload === slot.id ? { ...slot, availability: false } : slot
 				)
 			};
+		case "GO_FORWARD":
+			return {
+				slots: state.slots.map(
+					slot =>
+						(slot = {
+							...slot,
+							dayOfTheWeek: moment()
+								.add(action.payload++, "d")
+								.format("dddd"),
+							date: moment()
+								.add(action.payload++, "d")
+								.format("MMMM, Do")
+						})
+				)
+			};
+		case "GO_BACK":
+			return {
+				slots: state.slots.map(
+					slot =>
+						(slot = {
+							...slot,
+							dayOfTheWeek: moment()
+								.add(action.payload++, "d")
+								.format("dddd"),
+							date: moment()
+								.add(action.payload++, "d")
+								.format("MMMM, Do")
+						})
+				)
+			};
 		default:
 			return state;
 	}
