@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Confirmation from "./PopUps/Confirmation";
+import classNames from "classnames";
 
 class BookingForm extends Component {
 	state = {
@@ -11,30 +12,32 @@ class BookingForm extends Component {
 	};
 
 	submitForm = (id, dispatch, e) => {
-		// const { name, phone, message } = this.state;
+		const { name, phone, message } = this.state;
 		// Error checking
-		// if (name === "") {
-		// 	this.setState({ errors: { name: "Name is required" } });
-		// 	return;
-		// }
-		// if (phone === "") {
-		// 	this.setState({ errors: { phone: "Phone is required" } });
-		// 	return;
-		// }
-		// if (message === "") {
-		// 	this.setState({ errors: { message: "Message is required" } });
-		// 	return;
-		// }
-		dispatch({ type: "CHANGE_AVAILABILITY", payload: id });
-		this.setState({ isConfirmed: true });
-		e.preventDefault();
+		if (name === "") {
+			this.setState({ errors: { name: "Name is required" } });
+			e.preventDefault();
+			return;
+		} else if (phone === "") {
+			this.setState({ errors: { phone: "Phone is required" } });
+			e.preventDefault();
+			return;
+		} else if (message === "") {
+			this.setState({ errors: { message: "Message is required" } });
+			e.preventDefault();
+			return;
+		} else {
+			dispatch({ type: "CHANGE_AVAILABILITY", payload: id });
+			this.setState({ isConfirmed: true });
+			e.preventDefault();
+		}
 	};
 	onChange = e => {
 		this.setState({ [e.target.name]: e.target.value });
 	};
 	render() {
 		const { id, availability, handleClose, dispatch } = this.props;
-		const { name, phone, message, isConfirmed } = this.state;
+		const { name, phone, message, isConfirmed, errors } = this.state;
 		return (
 			<>
 				{!isConfirmed ? (
@@ -46,12 +49,14 @@ class BookingForm extends Component {
 							<label htmlFor="name">Your Name:</label>
 							{availability ? (
 								<input
+									className={classNames({ "not-valid": errors.name })}
 									value={name}
 									type="text"
 									name="name"
 									placeholder="Johny"
 									onChange={this.onChange}
-									required
+									error={errors.name}
+									// required
 								/>
 							) : (
 								<input
@@ -68,12 +73,14 @@ class BookingForm extends Component {
 							<label htmlFor="phone">Your phone number:</label>
 							{availability ? (
 								<input
+									className={classNames({ "not-valid": errors.phone })}
 									type="number"
 									name="phone"
 									placeholder="123-456-7890"
 									value={phone}
 									onChange={this.onChange}
-									required
+									error={errors.phone}
+									// required
 								></input>
 							) : (
 								<input
@@ -90,12 +97,14 @@ class BookingForm extends Component {
 							<label htmlFor="time">Reservation Time:</label>
 							{availability ? (
 								<input
+									className={classNames({ "not-valid": errors.message })}
 									value={message}
 									type="text"
 									name="message"
 									placeholder="From 6 to 8"
 									onChange={this.onChange}
-									required
+									error={errors.message}
+									// required
 								/>
 							) : (
 								<input
@@ -124,6 +133,11 @@ class BookingForm extends Component {
 								Go Back!
 							</button>
 						</div>
+						{errors.name || errors.phone || errors.message ? (
+							<h2 style={{ color: "red", marginTop: "2rem" }}>
+								Please fill out the required fields!
+							</h2>
+						) : null}
 					</form>
 				) : (
 					<Confirmation />
