@@ -4,15 +4,15 @@ import BookingModal from "./BookingModal";
 
 class DateSlot extends Component {
 	state = {
-		show: false
+		showBookingModal: false
 	};
 	showModal = () => {
-		this.setState({ show: true });
+		this.setState({ showBookingModal: true });
 	};
 
 	hideModal = e => {
 		e.stopPropagation();
-		this.setState({ show: false });
+		this.setState({ showBookingModal: false });
 	};
 
 	render() {
@@ -34,7 +34,7 @@ class DateSlot extends Component {
 				</div>
 				<BookingModal
 					id={id}
-					show={this.state.show}
+					show={this.state.showBookingModal}
 					handleClose={this.hideModal}
 					availability={availability}
 				/>

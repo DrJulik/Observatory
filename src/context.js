@@ -18,7 +18,7 @@ const reducer = (state, action) => {
 						(slot = {
 							...slot,
 							dayOfTheWeek: moment()
-								.add(action.payload++, "d")
+								.add(action.payload, "d")
 								.format("dddd"),
 							date: moment()
 								.add(action.payload++, "d")
@@ -33,7 +33,7 @@ const reducer = (state, action) => {
 						(slot = {
 							...slot,
 							dayOfTheWeek: moment()
-								.add(action.payload++, "d")
+								.add(action.payload, "d")
 								.format("dddd"),
 							date: moment()
 								.add(action.payload++, "d")

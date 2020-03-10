@@ -1,7 +1,7 @@
 import React from "react";
 import { Consumer } from "../../context";
 
-let n = 1;
+let n = -12;
 const LeftArrow = () => {
 	const goBack = dispatch => {
 		n--;
@@ -14,7 +14,12 @@ const LeftArrow = () => {
 				const { dispatch } = value;
 				return (
 					<div className="panel-left" onClick={goBack.bind(this, dispatch)}>
-						<h2 className="nav-text">A</h2>
+						<div className="nav-text">
+							<div>B</div>
+							<div>A</div>
+							<div>C</div>
+							<div>K</div>
+						</div>
 						<i className="fas fa-caret-left fa-2x"></i>
 					</div>
 				);

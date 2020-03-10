@@ -35,6 +35,7 @@ class BookingForm extends Component {
 	onChange = e => {
 		this.setState({ [e.target.name]: e.target.value });
 	};
+
 	render() {
 		const { id, availability, handleClose, dispatch } = this.props;
 		const { name, phone, message, isConfirmed, errors } = this.state;

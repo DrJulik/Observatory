@@ -167,6 +167,10 @@
 	background: rgba(90, 108, 122, 0.5);
 }
 
+.nav-text div {
+	font-size: 1.5rem;
+	font-weight: bold;
+}
 .grid .div4 {
 	-ms-grid-row: 1;
 	-ms-grid-row-span: 1;
